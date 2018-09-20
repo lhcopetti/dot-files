@@ -43,11 +43,11 @@ set guioptions-=r
 set guioptions-=L
 
 " Attempt to automatically install Plug
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+"if empty(glob('~/.vim/autoload/plug.vim'))
+"  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+"    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+"endif
 
 
 
@@ -151,15 +151,27 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 
 " The Silver Searcher
 " https://robots.thoughtbot.com/faster-grepping-in-vim
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
+"if executable('ag')
+"  set grepprg=ag\ --nogroup\ --nocolor
+"
+"  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+"  let g:ctrlp_user_command = 'ag %s -l --follow --nocolor -g ""'
+"
+"  " ag is fast enough that CtrlP doesn't need to cache
+"  let g:ctrlp_use_caching = 0
+"endif
 
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --follow --nocolor -g ""'
+" The ripgrep (honors .gitiginore, unlike ag)
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepformat^=%f:%l:%c:%m
 
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
+  " Use rg in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+
+  " rg is fast enough that CtrlP doesn't need to cache
+  " Do we really need to turn off caching?
+"  let g:ctrlp_use_caching = 0
 endif
 
 " Set CtrlP to follow symlinks
@@ -184,6 +196,24 @@ endif
 
 """""" Other Configurations """""" 
 
+" Set GUI font
+" Use the command: :set guifont=* to select a font using the system's font
+" picker, then to print the selected font, use: :set &guifont or :set guifont?
+if has("gui_running")
+    if has("gui_win32")
+        set guifont=Consolas:h11:cANSI
+    elseif has("gui_gtk3")
+        " If you don't have this font installed, add it using the commands
+        " below (Ubuntu):
+        "
+        " sudo apt-get install fonts-inconsolata -y
+        " sudo fc-cache -fv
+        " 
+        set guifont="Inconsolata Medium 11"
+    else
+        echom "Could not detect system, using default font"
+    endif
+endif
 
 " Curious exercises from learnvimscriptthehardway.com
 " redraw | echo ">^.^<"
