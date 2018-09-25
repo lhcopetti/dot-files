@@ -201,6 +201,9 @@ endif
 " picker, then to print the selected font, use: :set &guifont or :set guifont?
 if has("gui_running")
     if has("gui_win32")
+        " For YCM, didn't work though. don't want to install cmake to run install.py
+        " I'm just going to leave it here because it doesn't hurt.
+        set encoding=utf-8
         set guifont=Consolas:h11:cANSI
     elseif has("gui_gtk3")
         " If you don't have this font installed, add it using the commands
