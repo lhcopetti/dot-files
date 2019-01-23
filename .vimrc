@@ -197,6 +197,15 @@ if executable('rg')
     let g:ackprg = 'rg --vimgrep --no-heading'
 endif
 
+
+"""""" Helper Ack Functions """"""
+fun! AckJS( args ) "{{{
+   execute 'Ack -g"*.js" -g"!node/" -g"!node_modules/" -g"!vendor/"' a:args
+
+endfunction "}}}
+
+command! -nargs=* Ackjs call AckJS(' <args> ')
+
 """""" Other Configurations """""" 
 
 " Set GUI font
