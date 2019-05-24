@@ -21,6 +21,17 @@ set hidden
 " Do not wrap lines by default
 set nowrap
 
+" Display command on the bottom-right corner
+set showcmd
+
+" The line numbers are relative to the cursor position
+" Never used it, I don't think it as useful as I once thought
+" It IS useful, you just gotta get used to it
+set relativenumber
+
+" Highlight the current line
+set cursorline
+
 " Disable arrow keys
 inoremap <Up>		<NOP>
 nnoremap <Up>		<NOP>
@@ -233,10 +244,6 @@ endif
 " Curious exercises from learnvimscriptthehardway.com
 " redraw | echo ">^.^<"
 autocmd VimEnter * echom ">^.^<"
-
-" The line numbers are relative to the cursor position
-" Never used it, I don't think it as useful as I once though
-" :set relativenumber
 
 
 " Move swp files to a different location (better git diffs)
