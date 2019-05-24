@@ -200,7 +200,7 @@ endif
 
 """""" Helper Ack Functions """"""
 fun! AckJS( args ) "{{{
-   execute 'Ack -g"*.js" -g"*.html" -g"*.css" -g"!node/" -g"!node_modules/" -g"!vendor/"' a:args
+   execute 'Ack -g"*.js" -g"*.html" -g"*.css" -g"*.template" -g"!node/" -g"!node_modules/" -g"!vendor/"' a:args
 
 endfunction "}}}
 
