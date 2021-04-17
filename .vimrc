@@ -67,55 +67,22 @@ set guioptions-=L
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/ctrlp.vim'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
-
-" Disabling you complete me because its classpath are not always correct
-" Favoring eclim instead
-Plug 'valloric/youcompleteme'
-Plug 'airblade/vim-gitgutter'
-Plug 'janko-m/vim-test'
 Plug 'sjl/badwolf'
 
 " Themes
-"Plug 'dracula/vim'
 Plug 'altercation/vim-colors-solarized'
 
 call plug#end()
 
 
-"""""" Vim-Test Plugin Configuration """""" 
-nnoremap t<C-n> :TestNearest<CR>
-nnoremap t<C-f> :TestFile<CR>
-nnoremap t<C-s> :TestSuite<CR>
-nnoremap t<C-l> :TestLast<CR>
-nnoremap t<C-g> :TestVisit<CR>
-
-
 """""" Airline Plugin Configuration """""" 
 let g:airline#extensions#tabline#enabled = 1
-
-
-"""""" YouCompleteMe Plugin Configuration """""" 
-" Remember to run install.py or follow the installation instructions as this
-" plugin depends on compiled libraries to get fast completions
-let g:ycm_always_populate_location_list = 1
-let g:ycm_show_diagnostics_ui = 1
-let g:ycm_enable_diagnostic_signs = 0 
-let g:ycm_enable_diagnostic_highlighting = 0
-let g:syntastic_java_checkers = []
-
-
-"""""" TagBar Plugin Configuration """""" 
-" Remember to install universal-ctags (mantained ctags implementation)
-nnoremap <F8> :TagbarToggle<CR>
 
 
 """""" NERDTree Plugin Configuration """""" 
@@ -134,10 +101,6 @@ let NERDTreeMinimalUI = 1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 """""" THEMES """""""""
-
-" Instructions to enable the dracula theme from: https://vimawesome.com/plugin/vim
-"syntax on
-"color dracula
 
 " Instructions to enable the solarized theme: https://vimawesome.com/plugin/vim-colors-solarized-ours
 syntax enable
@@ -287,12 +250,3 @@ inoremap <esc> <nop>
 " stretch your pinky :)
 nnoremap ; :
 nnoremap : ;
-
-
-"""""" Eclim Plugin Configuration """""" 
-let g:EclimJavaValidate = 1
-let g:EclimMakeLCD = 1
-
-" I'm still haven't figure it out how to be effective using eclim
-" but when the time comes, I might use this mapping again.
-" nnoremap <Leader>ev :Validate<CR>
