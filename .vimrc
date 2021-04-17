@@ -239,7 +239,8 @@ set ignorecase
 set smartcase
 
 " Highlight the searching patterns
-set hlsearch
+set nohlsearch
+set incsearch
 
 " Remap the <esc> key to the 'jk' pattern
 inoremap jk <esc>
